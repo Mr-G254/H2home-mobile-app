@@ -65,6 +65,17 @@ flutter:
     - Icons/imageC.png
     - Icons/imageD.png
 
+  fonts:
+    - family: Nico Moji
+      fonts:
+        - asset: fonts/NicoMoji-Regular.ttf
+
+    - family: IBM Plex Mono
+      fonts:
+        - asset: fonts/IBMPlexMono-Regular.ttf
+        - asset: fonts/IBMPlexMono-Medium.ttf
+        - asset: fonts/IBMPlexMono-SemiBold.ttf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -95,14 +106,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-  fonts:
-    - family: Nico Moji
-      fonts:
-        - asset: Fonts/NicoMoji-Regular.ttf
-
-    - family: IBM Plex Mono
-      fonts:
-        - asset: Fonts/IBMPlexMono-Regular.ttf
-        - asset: Fonts/IBMPlexMono-Medium.ttf
-        - asset: Fonts/IBMPlexMono-SemiBold.ttf

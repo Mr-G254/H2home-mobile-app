@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2home/FirstTime/FirstTime.dart';
 
 class Splashscreen extends StatefulWidget{
   const Splashscreen({super.key});
@@ -12,7 +13,12 @@ class _SplashscreenState extends State<Splashscreen>{
   void initState() {
     // TODO: implement initState
     super.initState();
+    Future.delayed(const Duration(seconds: 2),(){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FirstTime()));
+    });
   }
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
