@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2home/Login/Login.dart';
 
 class Four extends StatelessWidget{
   const Four({super.key});
@@ -60,7 +61,7 @@ class Four extends StatelessWidget{
                   backgroundColor: Colors.white
               ),
               onPressed: (){
-
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
               },
               child: Container(
                 padding: const EdgeInsets.all(10),

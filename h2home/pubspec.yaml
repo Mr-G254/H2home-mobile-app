@@ -64,6 +64,7 @@ flutter:
     - Icons/imageB.png
     - Icons/imageC.png
     - Icons/imageD.png
+    - Icons/bg.png
 
   fonts:
     - family: Nico Moji

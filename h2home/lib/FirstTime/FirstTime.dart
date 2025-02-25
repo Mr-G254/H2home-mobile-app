@@ -63,6 +63,7 @@ class _FirstTimeState extends State<FirstTime> with SingleTickerProviderStateMix
                   onTap: () => controller.index = 0,
                 ),
               ),
+
               Expanded(
                 child: GestureDetector(
                   child: Container(
