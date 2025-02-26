@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h2home/Components/Components.dart';
 import 'package:h2home/Login/Login.dart';
+import 'package:h2home/Login/Verification.dart';
 
 class SignUp extends StatefulWidget{
   const SignUp({super.key});
@@ -40,6 +41,7 @@ class _SignUpState extends State<SignUp>{
             width: double.infinity,
             padding: EdgeInsets.zero,
             child: Card(
+              elevation: 10,
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)
@@ -56,7 +58,7 @@ class _SignUpState extends State<SignUp>{
                         style: TextStyle(
                             fontFamily: "IBM Plex Mono",
                             fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                            fontSize: 21,
                             color: Color(0xff1976D2)
                         ),
                       ),
@@ -67,20 +69,22 @@ class _SignUpState extends State<SignUp>{
                     Input(label: 'Password', controller: password, inputType: TextInputType.visiblePassword),
                     Container(
                       width: double.infinity,
-                      height: 105,
+                      height: 90,
                       padding: const EdgeInsets.only(top: 30,bottom: 10,right: 10,left: 10),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             backgroundColor: const Color(0xff1976D2)
                         ),
-                        onPressed: () {  },
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                        },
                         child: const Text(
                           "Sign up",
                           style: TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontWeight: FontWeight.normal,
-                              fontSize: 25,
+                              fontSize: 19,
                               color: Colors.white
                           ),
                         ),
@@ -94,7 +98,7 @@ class _SignUpState extends State<SignUp>{
                                   text: "Already have an account? ",
                                   style: TextStyle(
                                       fontFamily: "IBM Plex Mono",
-                                      fontSize: 15,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                       color: Color(0xff1976D2)
                                   ),
@@ -103,7 +107,7 @@ class _SignUpState extends State<SignUp>{
                                       text: "Login",
                                       style: TextStyle(
                                           fontFamily: "IBM Plex Mono",
-                                          fontSize: 15,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xff1976D2)
                                       ),
@@ -146,7 +150,7 @@ class _SignUpState extends State<SignUp>{
                 alignment: Alignment.center,
                 width: double.infinity,
                 child: FractionallySizedBox(
-                  heightFactor: 0.8,
+                  heightFactor: 0.85,
                   widthFactor: 0.9,
                   child: window,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h2home/Components/Components.dart';
+import 'package:h2home/Login/ForgotPassword.dart';
 import 'package:h2home/Login/SignUp.dart';
 
 class Login extends StatefulWidget{
@@ -16,9 +17,10 @@ class _LoginState extends State<Login>{
   @override
   Widget build(BuildContext context){
     final window = Card(
+      elevation: 10,
       color: Colors.white,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
+          borderRadius: BorderRadius.circular(10)
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -32,7 +34,7 @@ class _LoginState extends State<Login>{
                 style: TextStyle(
                     fontFamily: "IBM Plex Mono",
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 21,
                     color: Color(0xff1976D2)
                 ),
               ),
@@ -42,20 +44,25 @@ class _LoginState extends State<Login>{
             Container(
                 width: double.infinity,
                 padding: const EdgeInsets.only(right: 20),
-                child: const Text(
-                  'forgot password?',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                      fontFamily: "IBM Plex Mono",
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff1976D2)
+                child: GestureDetector(
+                  child: const Text(
+                    'forgot password?',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontFamily: "IBM Plex Mono",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff1976D2)
+                    ),
                   ),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                  },
                 )
             ),
             Container(
               width: double.infinity,
-              height: 105,
+              height: 90,
               padding: const EdgeInsets.only(top: 30,bottom: 10,right: 10,left: 10),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -68,7 +75,7 @@ class _LoginState extends State<Login>{
                   style: TextStyle(
                       fontFamily: "IBM Plex Mono",
                       fontWeight: FontWeight.normal,
-                      fontSize: 25,
+                      fontSize: 19,
                       color: Colors.white
                   ),
                 ),
@@ -82,7 +89,7 @@ class _LoginState extends State<Login>{
                     text: "Don't have an account? ",
                     style: TextStyle(
                         fontFamily: "IBM Plex Mono",
-                        fontSize: 15,
+                        fontSize: 14,
                         fontWeight: FontWeight.normal,
                         color: Color(0xff1976D2)
                     ),
@@ -91,7 +98,7 @@ class _LoginState extends State<Login>{
                         text: "Sign up",
                         style: TextStyle(
                             fontFamily: "IBM Plex Mono",
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff1976D2)
                         ),
@@ -126,7 +133,7 @@ class _LoginState extends State<Login>{
             backgroundColor: Colors.transparent,
             body: Center(
               child: FractionallySizedBox(
-                widthFactor: 0.9,
+                widthFactor: 0.85,
                 heightFactor: 0.5,
                 child: window,
               )

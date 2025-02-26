@@ -18,7 +18,7 @@ class Input extends StatelessWidget{
             label,
             textAlign: TextAlign.left,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 13,
               fontWeight: FontWeight.bold,
               fontFamily: 'IBM Plex Mono',
               color: Color(0xff1976D2)
@@ -33,24 +33,25 @@ class Input extends StatelessWidget{
             textInputAction: TextInputAction.next,
             cursorColor: const Color(0xff64B5F6),
             style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'IBM Plex Mono',
-                color: Color(0xff64B5F6)
+              height: 1.4,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'IBM Plex Mono',
+              color: Color(0xff64B5F6)
             ),
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
                   color: Color(0xff1976D2),
-                  width: 4
+                  width: 3
                 )
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
                   color: Color(0xff1976D2),
-                  width: 4
+                  width: 3
                 )
               ),
             ),
