@@ -67,6 +67,14 @@ flutter:
     - Icons/imageD.png
     - Icons/bg.png
     - Icons/Check.png
+    - Icons/chartA.png
+    - Icons/basketA.png
+    - Icons/userA.png
+    - Icons/dashboardA.png
+    - Icons/chartB.png
+    - Icons/basketB.png
+    - Icons/userB.png
+    - Icons/dashboardB.png
 
   fonts:
     - family: Nico Moji
