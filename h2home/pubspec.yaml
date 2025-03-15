@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   loading_animation_widget: ^1.3.0
+  fl_chart: ^0.70.2
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - Icons/basketB.png
     - Icons/userB.png
     - Icons/dashboardB.png
+    - Icons/bell.png
 
   fonts:
     - family: Nico Moji
