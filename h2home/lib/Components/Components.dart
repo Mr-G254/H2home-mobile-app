@@ -116,22 +116,7 @@ class DashboardChart extends StatelessWidget{
     final widget = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.only(top: 2,bottom: 2,right: 10,left: 10),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-            color: Color(0xff1976D2)
-          ),
-          child: const Text(
-            "Week",
-            style: TextStyle(
-              fontSize: 12,
-              fontFamily: "IBM Plex Mono",
-              fontWeight: FontWeight.bold,
-              color: Colors.white
-            ),
-          ),
-        ),
+        const Label(label: "Week"),
         const SizedBox(height: 15,),
         Expanded(
           child: Container(
@@ -200,6 +185,56 @@ class DashboardChart extends StatelessWidget{
     return Container(
       padding: const EdgeInsets.only(right: 20,top: 10,left: 10,bottom: 10),
       child: widget,
+    );
+  }
+}
+
+class Label extends StatelessWidget{
+  final String label;
+  const Label({super.key,required this.label});
+
+  @override
+  Widget build(BuildContext context){
+    return Container(
+      padding: const EdgeInsets.only(top: 2,bottom: 2,right: 10,left: 10),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          color: Color(0xff1976D2)
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+            fontSize: 12,
+            fontFamily: "IBM Plex Mono",
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+        ),
+      ),
+    );
+  }
+}
+
+class WaterComponents extends StatelessWidget{
+  final String component;
+  const WaterComponents({super.key,required this.component});
+
+  @override
+  Widget build(BuildContext context){
+    return Container(
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: const Color(0xffF88D0A),
+      ),
+      child: Text(
+        component,
+        style: const TextStyle(
+            fontFamily: "IBM Plex Mono",
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+        ),
+      ),
     );
   }
 }
