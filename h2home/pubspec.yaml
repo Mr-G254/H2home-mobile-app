@@ -78,6 +78,14 @@ flutter:
     - Icons/userB.png
     - Icons/dashboardB.png
     - Icons/bell.png
+    - Icons/share.png
+    - Icons/offer.png
+    - Icons/hacker.png
+    - Icons/email.png
+    - Icons/location.png
+    - Icons/phone.png
+    - Icons/calendar.png
+    - Icons/edit.png
 
   fonts:
     - family: Nico Moji

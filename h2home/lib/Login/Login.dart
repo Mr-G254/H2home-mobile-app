@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:h2home/Components/Components.dart';
 import 'package:h2home/Login/ForgotPassword.dart';
 import 'package:h2home/Login/SignUp.dart';
+import 'package:h2home/Main/Dashboard.dart';
 import 'package:h2home/Main/Home.dart';
 
 class Login extends StatefulWidget{
@@ -71,7 +72,7 @@ class _LoginState extends State<Login>{
                     backgroundColor: const Color(0xff1976D2)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                 },
                 child: const Text(
                   "Login",

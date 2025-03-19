@@ -228,6 +228,7 @@ class WaterComponents extends StatelessWidget{
       ),
       child: Text(
         component,
+        textAlign: TextAlign.center,
         style: const TextStyle(
             fontFamily: "IBM Plex Mono",
             fontSize: 14,
