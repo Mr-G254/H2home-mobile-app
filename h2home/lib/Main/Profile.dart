@@ -50,8 +50,8 @@ class Profile extends StatelessWidget{
                 children: [
                   const Image(
                     image: AssetImage("Icons/email.png"),
-                    height: 33,
-                    width: 33,
+                    height: 30,
+                    width: 30,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
@@ -86,8 +86,8 @@ class Profile extends StatelessWidget{
                 children: [
                   const Image(
                     image: AssetImage("Icons/phone.png"),
-                    height: 33,
-                    width: 33,
+                    height: 30,
+                    width: 30,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
@@ -104,7 +104,7 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          "+254723839331",
+                          "+254723839301",
                           style: TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,
@@ -122,8 +122,8 @@ class Profile extends StatelessWidget{
                 children: [
                   const Image(
                     image: AssetImage("Icons/location.png"),
-                    height: 33,
-                    width: 33,
+                    height: 30,
+                    width: 30,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
@@ -158,8 +158,8 @@ class Profile extends StatelessWidget{
                 children: [
                   const Image(
                     image: AssetImage("Icons/calendar.png"),
-                    height: 33,
-                    width: 33,
+                    height: 30,
+                    width: 30,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
@@ -195,6 +195,7 @@ class Profile extends StatelessWidget{
         ),
         Container(
           padding: const EdgeInsets.all(10),
+          height: 70,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,

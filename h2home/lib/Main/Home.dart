@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h2home/Main/Dashboard.dart';
 import 'package:h2home/Main/Profile.dart';
+import 'package:h2home/Main/Vendors.dart';
 
 class Home extends StatefulWidget{
 
@@ -109,7 +110,7 @@ class _HomeState extends State<Home>{
           controller: controller,
           children: [
             Dashboard(),
-            SizedBox(),
+            Vendors(),
             SizedBox(),
             Profile()
           ],

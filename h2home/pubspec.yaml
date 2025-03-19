@@ -86,6 +86,7 @@ flutter:
     - Icons/phone.png
     - Icons/calendar.png
     - Icons/edit.png
+    - Icons/userpic.png
 
   fonts:
     - family: Nico Moji

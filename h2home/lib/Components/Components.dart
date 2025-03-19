@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:h2home/Backend/Vendor.dart';
 
 class Input extends StatelessWidget{
   final String label;
@@ -234,6 +235,96 @@ class WaterComponents extends StatelessWidget{
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.white
+        ),
+      ),
+    );
+  }
+}
+
+class VendorWidget extends StatelessWidget{
+  final Vendor vendor;
+  const VendorWidget({super.key,required this.vendor});
+
+  @override
+  Widget build(BuildContext context){
+    return Container(
+      padding: const EdgeInsets.all(0),
+      child: Card(
+        color: Colors.white,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        ),
+        child: Stack(
+          children: [
+            Container(
+              alignment: Alignment.topCenter,
+              // color: Colors.orange,
+              child: const Image(
+                image: AssetImage("Icons/userpic.png"),
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(1),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Expanded(child: SizedBox()),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                      color: const Color(0xff64B5F6),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(4),
+                              topRight: Radius.circular(4),
+                              bottomRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8)
+                          )
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        child: Text(
+                          vendor.name,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontFamily: "IBM Plex Mono",
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ),
+            Container(
+              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              child: Card(
+                color: Colors.black.withValues(alpha: 0.5),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6)
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    "KES ${vendor.price}",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontFamily: "IBM Plex Mono",
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                    ),
+                  ),
+                )
+              )
+            )
+          ],
         ),
       ),
     );
