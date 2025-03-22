@@ -55,7 +55,7 @@ class _VendorsState extends State<Vendors>{
                     child: Card(
                         color: const Color(0xff1976D2),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)
+                            borderRadius: BorderRadius.circular(6)
                         ),
                         child: Container(
                           padding: const EdgeInsets.all(0),
@@ -74,12 +74,14 @@ class _VendorsState extends State<Vendors>{
         ),
         Expanded(
           child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(right: 5,left: 5,bottom: 5),
               child: GridView.extent(
                 maxCrossAxisExtent: MediaQuery.of(context).size.width/2,
+                mainAxisSpacing: 2,
+                crossAxisSpacing: 2,
                 childAspectRatio: 5/4,
                 children: [
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
+                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description description description description description description description description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
                   VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
                   VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
                   VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),

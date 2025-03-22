@@ -247,7 +247,7 @@ class VendorWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return Container(
+    final card =  Container(
       padding: const EdgeInsets.all(0),
       child: Card(
         color: Colors.white,
@@ -266,7 +266,7 @@ class VendorWidget extends StatelessWidget{
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(1),
+              padding: const EdgeInsets.all(0),
               width: double.infinity,
               child: Column(
                 children: [
@@ -327,6 +327,197 @@ class VendorWidget extends StatelessWidget{
           ],
         ),
       ),
+    );
+
+    return GestureDetector(
+      child: card,
+      onTap: (){
+        showModalBottomSheet(
+          context: context,
+          backgroundColor: Colors.white,
+          elevation: 10,
+          isScrollControlled: true,
+          // showDragHandle: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+          ),
+          builder: (context) => VendorBottomSheet(vendor: vendor,)
+        );
+      },
+    );
+  }
+}
+
+class VendorBottomSheet extends StatelessWidget{
+  final Vendor vendor;
+  const VendorBottomSheet({super.key,required this.vendor});
+
+  @override
+  Widget build(BuildContext context){
+    final bottomSheet =  Column( mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(height: 20,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 15,top: 5),
+              child: Text(
+                vendor.name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: "IBM Plex Mono",
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black
+                ),
+              ),
+            ),
+            Container(
+              width: 60,
+              padding: const EdgeInsets.all(10),
+              child: GestureDetector(
+                child: const AspectRatio(
+                  aspectRatio: 1,
+                  child: Card(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
+                    color: Color(0xff1976D2),
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 26,
+                    ),
+                  ),
+                ),
+                onTap: (){
+                  Navigator.pop(context);
+                },
+              )
+            )
+          ],
+        ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(top: 0,right: 15,left: 15,bottom: 0),
+          child: AspectRatio(
+            aspectRatio: 5/3,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image(
+                image: AssetImage(vendor.imageUrl),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        ),
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: const Text(
+                    "Description",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: "IBM Plex Mono",
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 5,top: 5,right: 5),
+                  child: Text(
+                    vendor.description,
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                        fontFamily: "IBM Plex Mono",
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(left: 5),
+                child: const Text(
+                  "Price per Litre",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: "IBM Plex Mono",
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 5,top: 5,right: 55),
+                child: Text(
+                  "KES ${vendor.price}",
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                      fontFamily: "IBM Plex Mono",
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff1976D2)
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          height: 65,
+          padding: EdgeInsets.only(top: 10,right: 10,left: 10,bottom: 5),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xff1976D2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)
+              )
+            ),
+            onPressed: (){
+
+            },
+            child: const Text(
+              "Order now",
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                  fontFamily: "IBM Plex Mono",
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,)
+      ],
+    );
+
+    return Container(
+      height: MediaQuery.of(context).size.height*0.65,
+      child: bottomSheet,
     );
   }
 }
