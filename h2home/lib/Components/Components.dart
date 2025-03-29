@@ -338,7 +338,6 @@ class VendorWidget extends StatelessWidget{
           backgroundColor: Colors.white,
           elevation: 10,
           isScrollControlled: true,
-          // showDragHandle: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
           ),
@@ -519,6 +518,58 @@ class VendorBottomSheet extends StatelessWidget{
     return Container(
       height: MediaQuery.of(context).size.height*0.65,
       child: bottomSheet,
+    );
+  }
+}
+
+class PriceButton extends StatelessWidget{
+  final int price;
+  final bool isSelected;
+  final void Function(int) callback;
+  const PriceButton({super.key,required this.price,required this.isSelected,required this.callback});
+
+  @override
+  Widget build(BuildContext context){
+    final button = Container(
+      padding: const EdgeInsets.all(2),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Card(
+          color: isSelected ? const Color(0xff1976D2) : Colors.white,
+          shape: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 2,
+              color: Color(0xff1976D2),
+            ),
+            borderRadius: BorderRadius.circular(6)
+          ),
+          child: Center(
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              padding: const EdgeInsets.all(10),
+              alignment: Alignment.center,
+              child: Text(
+                "${price.toString()}L",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: "IBM Plex Mono",
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: isSelected? Colors.white : const Color(0xff1976D2)
+                ),
+              ),
+            ),
+          )
+        ),
+      ),
+    );
+
+    return GestureDetector(
+      child: button,
+      onTap: (){
+        callback(price);
+      },
     );
   }
 }
