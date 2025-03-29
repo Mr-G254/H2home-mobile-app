@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:h2home/Backend/Vendor.dart';
+import 'package:h2home/Main/PayNow.dart';
 
 class Input extends StatelessWidget{
   final String label;
@@ -497,7 +498,7 @@ class VendorBottomSheet extends StatelessWidget{
               )
             ),
             onPressed: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PayNow(vendor: vendor)));
             },
             child: const Text(
               "Order now",

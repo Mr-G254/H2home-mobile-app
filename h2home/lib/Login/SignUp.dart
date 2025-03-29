@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2home/Backend/App.dart';
 import 'package:h2home/Components/Components.dart';
 import 'package:h2home/Login/Login.dart';
 import 'package:h2home/Login/Verification.dart';
@@ -77,7 +78,8 @@ class _SignUpState extends State<SignUp>{
                             backgroundColor: const Color(0xff1976D2)
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                          App.registerUser(email.text,fname.text, password.text);
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
                         },
                         child: const Text(
                           "Sign up",
