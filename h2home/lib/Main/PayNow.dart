@@ -12,6 +12,7 @@ class PayNow extends StatefulWidget{
 
 class _PayNowState extends State<PayNow>{
   final TextEditingController priceController = TextEditingController();
+  final TextEditingController phone = TextEditingController();
   
   int selectedAmount = 0;
   int totalPrice = 0;
@@ -240,8 +241,8 @@ class _PayNowState extends State<PayNow>{
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height*0.23,
-          padding: EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height*0.22,
+          padding: EdgeInsets.only(right: 10,left: 10,top: 5,bottom: 5),
           width: double.infinity,
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -351,25 +352,146 @@ class _PayNowState extends State<PayNow>{
               ],
             )
           )
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height*0.25,
+          padding: EdgeInsets.only(right: 10,left: 10,top: 5,bottom: 5),
+          width: double.infinity,
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            color: Colors.white,
+            elevation: 15,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(7),
+                  child: Label(label: "Payment")
+                ),
+                Container(
+                  padding: EdgeInsets.all(0),
+                  child: RadioListTile(
+                    activeColor: const Color(0xff1976D2),
+                    visualDensity: VisualDensity(vertical: -2),
+                    title: Container(
+                      padding: const EdgeInsets.all(0),
+                      child: Text(
+                        "Mpesa",
+                        style: TextStyle(
+                            fontFamily: "IBM Plex Mono",
+                            fontSize: 17,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                    value: 1,
+                    groupValue: 1,
+                    onChanged: (val){
+
+                    }
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 30,right: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Enter your phone number",
+                          style: TextStyle(
+                              fontFamily: "IBM Plex Mono",
+                              fontSize: 15,
+                              color: Color(0xff64B5F6),
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        const SizedBox(height: 2,),
+                        Expanded(
+                          child: TextField(
+                            controller: phone,
+                            keyboardType: TextInputType.number,
+                            cursorColor: Colors.black,
+                            style: const TextStyle(
+                                height: 1.2,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'IBM Plex Mono',
+                                color: Colors.black
+                            ),
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(width: 2.5,color: Color(0xff1976D2)),
+                                  borderRadius: BorderRadius.circular(8)
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(width: 2.5,color: Color(0xff1976D2)),
+                                  borderRadius: BorderRadius.circular(8)
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 0,left: 0),
+                  child: RadioListTile(
+                    visualDensity: const VisualDensity(vertical: -2),
+                    activeColor: const Color(0xff1976D2),
+                    title: Container(
+                      padding: const EdgeInsets.all(0),
+                      child: const Text(
+                        "Bank",
+                        style: TextStyle(
+                            fontFamily: "IBM Plex Mono",
+                            fontSize: 17,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                    value: 2,
+                    groupValue: 1,
+                    onChanged: (val){
+
+                    }
+                  ),
+                )
+              ],
+            )
+          )
+        ),
+        Container(
+          padding: EdgeInsets.only(right: 15,left: 15,top: 5,bottom: 5),
+          height: 60,
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xff1976D2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)
+              )
+            ),
+            onPressed: (){
+
+            },
+            child: Container(
+              padding: const EdgeInsets.all(0),
+              child: const Text(
+                "Pay",
+                style: TextStyle(
+                    fontFamily: "IBM Plex Mono",
+                    fontSize: 19,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
         )
-        // Expanded(
-        //     flex: 3,
-        //     child: Card(
-        //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        //       color: Colors.white,
-        //       elevation: 15,
-        //       child: SizedBox(),
-        //     )
-        // ),
-        // Expanded(
-        //     flex: 3,
-        //     child: Card(
-        //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        //       color: Colors.white,
-        //       elevation: 15,
-        //       child: SizedBox(),
-        //     )
-        // ),
       ],
     );
 
@@ -391,6 +513,32 @@ class _PayNowState extends State<PayNow>{
               fontWeight: FontWeight.bold
           ),
         ),
+        actions: [
+          Container(
+            // width: 40,
+            padding: const EdgeInsets.all(10),
+            child: GestureDetector(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                  color: Color(0xff1976D2),
+                  child: Container(
+                    margin: EdgeInsets.all(2),
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  )
+                ),
+              ),
+              onTap: (){
+                Navigator.pop(context);
+              },
+            )
+          )
+        ],
       ),
     );
   }

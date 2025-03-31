@@ -200,16 +200,16 @@ class Label extends StatelessWidget{
     return Container(
       padding: const EdgeInsets.only(top: 2,bottom: 2,right: 10,left: 10),
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          color: Color(0xff1976D2)
+        borderRadius: BorderRadius.all(Radius.circular(4)),
+        color: Color(0xff1976D2)
       ),
       child: Text(
         label,
         style: const TextStyle(
-            fontSize: 12,
-            fontFamily: "IBM Plex Mono",
-            fontWeight: FontWeight.bold,
-            color: Colors.white
+          fontSize: 12,
+          fontFamily: "IBM Plex Mono",
+          fontWeight: FontWeight.bold,
+          color: Colors.white
         ),
       ),
     );
