@@ -73,9 +73,11 @@ class _LoginState extends State<Login>{
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     backgroundColor: const Color(0xff1976D2)
                 ),
-                onPressed: () {
-                  // App.signIn(email.text, password.text);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                onPressed: () async{
+                  await App.signIn(email.text, password.text).then((val){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                  });
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                 },
                 child: const Text(
                   "Login",

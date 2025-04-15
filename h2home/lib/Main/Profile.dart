@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2home/Backend/App.dart';
 
 class Profile extends StatelessWidget{
   const Profile({super.key});
@@ -31,9 +32,9 @@ class Profile extends StatelessWidget{
         ),
         Container(
           padding: const EdgeInsets.only(right: 10,left: 10,bottom: 10),
-          child: const Text(
-            "Vanessa Trizzah",
-            style: TextStyle(
+          child: Text(
+            App.userProfile.username,
+            style: const TextStyle(
                 fontFamily: "IBM Plex Mono",
                 fontSize: 20,
                 color: Colors.black,
@@ -91,10 +92,10 @@ class Profile extends StatelessWidget{
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "PHONE",
                           style: TextStyle(
                               fontFamily: "IBM Plex Mono",
@@ -104,8 +105,8 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          "+254723839301",
-                          style: TextStyle(
+                          App.userProfile.contact.toString(),
+                          style: const TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,
                               color: Colors.black,
@@ -127,10 +128,10 @@ class Profile extends StatelessWidget{
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "ADDRESS",
                           style: TextStyle(
                               fontFamily: "IBM Plex Mono",
@@ -140,8 +141,8 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          "Juja, Kenya",
-                          style: TextStyle(
+                          App.userProfile.location,
+                          style: const TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,
                               color: Colors.black,

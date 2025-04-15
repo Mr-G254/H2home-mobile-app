@@ -78,16 +78,16 @@ class _SignUpState extends State<SignUp>{
                             backgroundColor: const Color(0xff1976D2)
                         ),
                         onPressed: () {
-                          App.registerUser(email.text,fname.text, password.text);
+                          App.registerUser(email.text,password.text, password.text);
                           // Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
                         },
                         child: const Text(
                           "Sign up",
                           style: TextStyle(
-                              fontFamily: "IBM Plex Mono",
-                              fontWeight: FontWeight.normal,
-                              fontSize: 19,
-                              color: Colors.white
+                            fontFamily: "IBM Plex Mono",
+                            fontWeight: FontWeight.normal,
+                            fontSize: 19,
+                            color: Colors.white
                           ),
                         ),
                       ),
