@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:h2home/Backend/App.dart';
 import 'package:h2home/Components/Components.dart';
@@ -12,10 +13,20 @@ class SignUp extends StatefulWidget{
 }
 
 class _SignUpState extends State<SignUp>{
-  final fname = TextEditingController();
-  final lname = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+  final password2 = TextEditingController();
+  bool showPassword = false;
+  String errorMsg = "";
+  bool showError = false;
+  // TextInputType passwordVisibility = TextInputType.
+
+  void displayError(String error){
+    setState(() {
+      errorMsg = error;
+      showError = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -64,10 +75,58 @@ class _SignUpState extends State<SignUp>{
                         ),
                       ),
                     ),
-                    Input(label: 'First name', controller: fname, inputType: TextInputType.name),
-                    Input(label: 'Second name', controller: lname, inputType: TextInputType.name),
+                    Container(
+                      padding: const EdgeInsets.all(0),
+                      child: Visibility(
+                        maintainSize: true,
+                        maintainAnimation: true,
+                        maintainState: true,
+                        visible: showError,
+                        child: Text(
+                          errorMsg,
+                          style: const TextStyle(
+                            fontFamily: "IBM Plex Mono",
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.red
+                          ),
+                        ),
+                      ),
+                    ),
                     Input(label: 'Email', controller: email, inputType: TextInputType.emailAddress),
-                    Input(label: 'Password', controller: password, inputType: TextInputType.visiblePassword),
+                    Input(label: 'Password', controller: password, inputType: TextInputType.visiblePassword,showPassword: showPassword,),
+                    Input(label: 'Confirm password', controller: password2, inputType: TextInputType.visiblePassword,showPassword: showPassword,),
+                    Row(
+                      children: [
+                        Container(
+                          width: 30,
+                          height: 30,
+                          margin: const EdgeInsets.only(right: 0,left: 15),
+                          child: Checkbox(
+                            checkColor: Colors.white,
+                            activeColor: const Color(0xff1976D2),
+                            value: showPassword,
+                            onChanged: (val){
+                              setState(() {
+                                showPassword = val!;
+                              });
+                            }
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text(
+                            "Show password?",
+                            style: TextStyle(
+                                fontFamily: "IBM Plex Mono",
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xff1976D2)
+                            ),
+                          )
+                        )
+                      ]
+                    ),
                     Container(
                       width: double.infinity,
                       height: 90,
@@ -78,8 +137,21 @@ class _SignUpState extends State<SignUp>{
                             backgroundColor: const Color(0xff1976D2)
                         ),
                         onPressed: () {
-                          App.registerUser(email.text,password.text, password.text);
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                          if(email.text.isNotEmpty && password.text.isNotEmpty && password2.text.isNotEmpty){
+                            if(!EmailValidator.validate(email.text)){
+                              displayError("Enter a valid email address");
+                            }else{
+                              if(password.text != password2.text){
+                                displayError("The passwords don't match");
+
+                              }else{
+                                App.registerUser(email.text,password.text, password.text);
+                                // Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                              }
+                            }
+                          }else{
+                            displayError("Ensure that all fields are filled");
+                          }
                         },
                         child: const Text(
                           "Sign up",
@@ -96,26 +168,26 @@ class _SignUpState extends State<SignUp>{
                         padding: const EdgeInsets.only(right: 10,left: 10,bottom: 5),
                         child: GestureDetector(
                           child: const Text.rich(
-                              TextSpan(
-                                  text: "Already have an account? ",
+                            TextSpan(
+                              text: "Already have an account? ",
+                              style: TextStyle(
+                                fontFamily: "IBM Plex Mono",
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xff1976D2)
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Login",
                                   style: TextStyle(
-                                      fontFamily: "IBM Plex Mono",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                      color: Color(0xff1976D2)
+                                    fontFamily: "IBM Plex Mono",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff1976D2)
                                   ),
-                                  children: [
-                                    TextSpan(
-                                      text: "Login",
-                                      style: TextStyle(
-                                          fontFamily: "IBM Plex Mono",
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xff1976D2)
-                                      ),
-                                    )
-                                  ]
-                              )
+                                )
+                              ]
+                            )
                           ),
                           onTap: (){
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
@@ -152,7 +224,7 @@ class _SignUpState extends State<SignUp>{
                 alignment: Alignment.center,
                 width: double.infinity,
                 child: FractionallySizedBox(
-                  heightFactor: 0.85,
+                  heightFactor: 0.8,
                   widthFactor: 0.9,
                   child: window,
                 ),

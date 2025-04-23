@@ -7,7 +7,8 @@ class Input extends StatelessWidget{
   final String label;
   final TextEditingController controller;
   final TextInputType inputType;
-  const Input({super.key,required this.label,required this.controller,required this.inputType});
+  bool showPassword;
+  Input({super.key,required this.label,required this.controller,required this.inputType,this.showPassword = true});
 
   @override
   Widget build(BuildContext context){
@@ -31,6 +32,9 @@ class Input extends StatelessWidget{
         Container(
           padding: const EdgeInsets.only(bottom: 10),
           child: TextField(
+            obscureText: showPassword? false : true,
+            enableSuggestions: showPassword? false : false,
+            autocorrect: false,
             controller: controller,
             keyboardType: inputType,
             textInputAction: TextInputAction.next,
