@@ -136,7 +136,7 @@ class _SignUpState extends State<SignUp>{
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             backgroundColor: const Color(0xff1976D2)
                         ),
-                        onPressed: () {
+                        onPressed: () async{
                           if(email.text.isNotEmpty && password.text.isNotEmpty && password2.text.isNotEmpty){
                             if(!EmailValidator.validate(email.text)){
                               displayError("Enter a valid email address");
@@ -145,7 +145,14 @@ class _SignUpState extends State<SignUp>{
                                 displayError("The passwords don't match");
 
                               }else{
-                                App.registerUser(email.text,password.text, password.text);
+                                try{
+                                  await App.registerUser(email.text,password.text, password.text);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+
+                                }catch(e){
+                                  Error(e.toString());
+                                }
+
                                 // Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
                               }
                             }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:h2home/Splashscreen.dart';
+import 'package:toastification/toastification.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -11,8 +12,12 @@ void main() {
     ),
   );
 
-  runApp(const MaterialApp(
-    home: Splashscreen(),
-  ));
+  runApp(
+    const ToastificationWrapper(
+      child: MaterialApp(
+        home: Splashscreen(),
+      ),
+    )
+  );
 }
 

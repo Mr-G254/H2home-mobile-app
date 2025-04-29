@@ -4,6 +4,7 @@ import 'package:h2home/Login/ForgotPassword.dart';
 import 'package:h2home/Login/SignUp.dart';
 import 'package:h2home/Main/Dashboard.dart';
 import 'package:h2home/Main/Home.dart';
+import 'package:passwordfield/passwordfield.dart';
 
 import '../Backend/App.dart';
 
@@ -44,7 +45,91 @@ class _LoginState extends State<Login>{
               ),
             ),
             Input(label: "EMAIL", controller: email, inputType: TextInputType.emailAddress),
-            Input(label: "PASSWORD", controller: password, inputType: TextInputType.visiblePassword),
+            // Input(label: "PASSWORD", controller: password, inputType: TextInputType.visiblePassword),
+            Container(
+              padding: const EdgeInsets.only(right: 20,left: 20,top: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(0),
+                    child: const Text(
+                      "Password",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'IBM Plex Mono',
+                          color: Color(0xff1976D2)
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: PasswordField(
+                      controller: password,
+                      backgroundColor: Colors.white,
+                      hintText: "",
+                      errorMessage: "",
+                      color: const Color(0xff1976D2),
+                      passwordDecoration: PasswordDecoration(
+                        suffixIcon: const Icon(
+                          Icons.remove_red_eye_sharp,
+                          color: Color(0xff1976D2),
+                        ),
+                        inputStyle: const TextStyle(
+                          height: 1.4,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'IBM Plex Mono',
+                          color: Color(0xff64B5F6)
+                        ),
+                      ),
+                      border: PasswordBorder(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color(0xff1976D2),
+                                width: 3
+                            )
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color(0xff1976D2),
+                                width: 3
+                            )
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color(0xff1976D2),
+                                width: 3
+                            )
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color(0xff1976D2),
+                                width: 3
+                            )
+                        ),
+                      ),
+                      // cursorColor: const Color(0xff64B5F6),
+                      // style: const TextStyle(
+                      //     height: 1.4,
+                      //     fontSize: 15,
+                      //     fontWeight: FontWeight.bold,
+                      //     fontFamily: 'IBM Plex Mono',
+                      //     color: Color(0xff64B5F6)
+                      // ),
+                      //
+                    ),
+                  )
+                ],
+              ),
+            ),
             Container(
                 width: double.infinity,
                 padding: const EdgeInsets.only(right: 20),
@@ -74,10 +159,13 @@ class _LoginState extends State<Login>{
                     backgroundColor: const Color(0xff1976D2)
                 ),
                 onPressed: () async{
-                  await App.signIn(email.text, password.text).then((val){
+                  try{
+                    await App.signIn(email.text, password.text);
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-                  });
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+
+                  }catch(e){
+                    Error(e.toString());
+                  }
                 },
                 child: const Text(
                   "Login",

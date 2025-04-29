@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:h2home/Backend/Vendor.dart';
 import 'package:h2home/Main/PayNow.dart';
+import 'package:toastification/toastification.dart';
 
 class Input extends StatelessWidget{
   final String label;
@@ -576,4 +577,32 @@ class PriceButton extends StatelessWidget{
       },
     );
   }
+}
+
+void Error(String message){
+  toastification.show(
+    type: ToastificationType.error,
+    style: ToastificationStyle.flat,
+    title: const Text(
+      'An error occurred',
+      style: TextStyle(
+        fontFamily: "IBM Plex Mono",
+        fontWeight: FontWeight.bold,
+        fontSize: 12,
+        color: Colors.black
+      ),
+    ),
+    foregroundColor: Colors.red,
+    showProgressBar: true,
+    description: Text(
+      message,
+      style: const TextStyle(
+        fontFamily: "IBM Plex Mono",
+        fontWeight: FontWeight.normal,
+        fontSize: 10,
+        color: Colors.black
+      ),
+    ),
+    autoCloseDuration: const Duration(seconds: 5)
+  );
 }
