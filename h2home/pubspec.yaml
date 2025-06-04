@@ -42,6 +42,7 @@ dependencies:
   email_validator: ^3.0.0
   passwordfield: ^0.2.0
   toastification: ^3.0.2
+  fancy_password_field: ^2.0.8
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +92,9 @@ flutter:
     - Icons/calendar.png
     - Icons/edit.png
     - Icons/userpic.png
+    - Icons/hide.png
+    - Icons/show.png
+    - Icons/userv.png
 
   fonts:
     - family: Nico Moji

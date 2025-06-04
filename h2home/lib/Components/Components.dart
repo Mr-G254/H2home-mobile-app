@@ -4,6 +4,8 @@ import 'package:h2home/Backend/Vendor.dart';
 import 'package:h2home/Main/PayNow.dart';
 import 'package:toastification/toastification.dart';
 
+import '../Backend/App.dart';
+
 class Input extends StatelessWidget{
   final String label;
   final TextEditingController controller;
@@ -265,10 +267,12 @@ class VendorWidget extends StatelessWidget{
           children: [
             Container(
               alignment: Alignment.topCenter,
-              // color: Colors.orange,
-              child: const Image(
-                image: AssetImage("Icons/userpic.png"),
-                fit: BoxFit.fitHeight,
+              child: FadeInImage.assetNetwork(
+                width: double.infinity,
+                height: double.infinity,
+                placeholder: "Icons/userv.png",
+                image: vendor.imageUrl,
+                fit: BoxFit.cover,
               ),
             ),
             Container(
@@ -282,12 +286,12 @@ class VendorWidget extends StatelessWidget{
                     child: Card(
                       color: const Color(0xff64B5F6),
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4),
-                              topRight: Radius.circular(4),
-                              bottomRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8)
-                          )
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4),
+                          bottomRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8)
+                        )
                       ),
                       child: Container(
                         padding: const EdgeInsets.all(5),
@@ -295,10 +299,10 @@ class VendorWidget extends StatelessWidget{
                           vendor.name,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontFamily: "IBM Plex Mono",
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
+                            fontFamily: "IBM Plex Mono",
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black
                           ),
                         ),
                       ),
@@ -348,6 +352,8 @@ class VendorWidget extends StatelessWidget{
           ),
           builder: (context) => VendorBottomSheet(vendor: vendor,)
         );
+
+        App.userClicks(vendor.id);
       },
     );
   }
@@ -411,9 +417,15 @@ class VendorBottomSheet extends StatelessWidget{
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image(
-                image: AssetImage(vendor.imageUrl),
-                fit: BoxFit.cover,
+              child: Container(
+                alignment: Alignment.topCenter,
+                child: FadeInImage.assetNetwork(
+                  width: double.infinity,
+                  height: double.infinity,
+                  placeholder: "Icons/userv.png",
+                  image: vendor.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           )
@@ -431,10 +443,10 @@ class VendorBottomSheet extends StatelessWidget{
                     "Description",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontFamily: "IBM Plex Mono",
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black
+                      fontFamily: "IBM Plex Mono",
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black
                     ),
                   ),
                 ),
@@ -442,12 +454,14 @@ class VendorBottomSheet extends StatelessWidget{
                   padding: const EdgeInsets.only(left: 5,top: 5,right: 5),
                   child: Text(
                     vendor.description,
+                    maxLines: 3,
                     textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                        fontFamily: "IBM Plex Mono",
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black
+                      fontFamily: "IBM Plex Mono",
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black
                     ),
                   ),
                 ),

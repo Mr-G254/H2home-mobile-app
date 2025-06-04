@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:h2home/Main/Dashboard.dart';
+import 'package:h2home/Main/Home.dart';
 
 class VerificationComplete extends StatelessWidget{
   const VerificationComplete({super.key});
@@ -53,7 +55,9 @@ class VerificationComplete extends StatelessWidget{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 backgroundColor: Colors.white
             ),
-            onPressed: () {  },
+            onPressed: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+            },
             child: const Text(
               "Continue",
               style: TextStyle(

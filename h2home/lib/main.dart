@@ -13,9 +13,14 @@ void main() {
   );
 
   runApp(
-    const ToastificationWrapper(
+    ToastificationWrapper(
       child: MaterialApp(
-        home: Splashscreen(),
+        theme: ThemeData(
+          primaryIconTheme: const IconThemeData(
+            color: Color(0xff1976D2)
+          )
+        ),
+        home: const Splashscreen(),
       ),
     )
   );

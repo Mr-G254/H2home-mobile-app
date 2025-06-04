@@ -19,7 +19,26 @@ class _SignUpState extends State<SignUp>{
   bool showPassword = false;
   String errorMsg = "";
   bool showError = false;
-  // TextInputType passwordVisibility = TextInputType.
+  bool isLoading = false;
+
+  final loadingWidget = Container(
+    padding: const EdgeInsets.all(5),
+    child: const CircularProgressIndicator(
+      color: Colors.white,
+      strokeCap: StrokeCap.round,
+      strokeWidth: 5,
+    ),
+  );
+
+  final textWidget = const Text(
+    "Sign up",
+    style: TextStyle(
+        fontFamily: "IBM Plex Mono",
+        fontWeight: FontWeight.normal,
+        fontSize: 19,
+        color: Colors.white
+    ),
+  );
 
   void displayError(String error){
     setState(() {
@@ -145,11 +164,19 @@ class _SignUpState extends State<SignUp>{
                                 displayError("The passwords don't match");
 
                               }else{
+                                setState(() {
+                                  isLoading = true;
+                                });
+
                                 try{
                                   await App.registerUser(email.text,password.text, password.text);
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Verification()));
 
                                 }catch(e){
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+
                                   Error(e.toString());
                                 }
 
@@ -160,15 +187,7 @@ class _SignUpState extends State<SignUp>{
                             displayError("Ensure that all fields are filled");
                           }
                         },
-                        child: const Text(
-                          "Sign up",
-                          style: TextStyle(
-                            fontFamily: "IBM Plex Mono",
-                            fontWeight: FontWeight.normal,
-                            fontSize: 19,
-                            color: Colors.white
-                          ),
-                        ),
+                        child: isLoading ? loadingWidget : textWidget
                       ),
                     ),
                     Container(

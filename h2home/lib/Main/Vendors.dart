@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:h2home/Backend/Vendor.dart';
 import 'package:h2home/Components/Components.dart';
 
+import '../Backend/App.dart';
+
 class Vendors extends StatefulWidget{
-  const Vendors({super.key});
+  final List<VendorWidget> vendorWidgets;
+  const Vendors({super.key,required this.vendorWidgets});
 
   @override
   State<Vendors> createState() => _VendorsState();
@@ -74,24 +77,15 @@ class _VendorsState extends State<Vendors>{
         ),
         Expanded(
           child: Container(
-              padding: EdgeInsets.only(right: 5,left: 5,bottom: 5),
-              child: GridView.extent(
-                maxCrossAxisExtent: MediaQuery.of(context).size.width/2,
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 2,
-                childAspectRatio: 5/4,
-                children: [
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description description description description description description description description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya')),
-                  VendorWidget(vendor: Vendor(name: "Trizzuh", description: "description", imageUrl: "Icons/userpic.png", price: 5, location: 'Juja, Kenya'))
-                ],
-              )
-          ),
+            padding: const EdgeInsets.only(right: 5,left: 5,bottom: 5),
+            child: GridView.extent(
+              maxCrossAxisExtent: MediaQuery.of(context).size.width/2,
+              mainAxisSpacing: 2,
+              crossAxisSpacing: 2,
+              childAspectRatio: 5/4,
+              children: widget.vendorWidgets,
+            )
+          )
         )
       ],
     );

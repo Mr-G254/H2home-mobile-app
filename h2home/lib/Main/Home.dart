@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:h2home/Main/Dashboard.dart';
 import 'package:h2home/Main/Profile.dart';
 import 'package:h2home/Main/Vendors.dart';
+
+import '../Backend/App.dart';
 
 class Home extends StatefulWidget{
 
@@ -12,6 +16,7 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home>{
   int selectedIndex = 0;
   PageController controller = PageController();
+  late Timer timer;
 
   @override
   void initState() {
@@ -21,6 +26,11 @@ class _HomeState extends State<Home>{
       setState(() {
         selectedIndex = controller.page!.toInt();
       });
+    });
+
+    timer = Timer.periodic(Duration(minutes: 2), (val)async{
+      App.waterValue.value = await App.fetchWaterData();
+      print(App.waterValue.value);
     });
   }
 
@@ -106,15 +116,20 @@ class _HomeState extends State<Home>{
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: PageView(
-          controller: controller,
-          children: [
-            Dashboard(),
-            Vendors(),
-            SizedBox(),
-            Profile()
-          ],
-        ),
+        child: AnimatedBuilder(
+          animation: Listenable.merge([App.waterValue,App.allvendorsWidgets]),
+          builder: (context,value){
+            return PageView(
+              controller: controller,
+              children: [
+                Dashboard(waterValue: App.waterValue.value),
+                Vendors(vendorWidgets: App.allvendorsWidgets.value,),
+                const SizedBox(),
+                const Profile()
+              ],
+            );
+          },
+        )
       ),
       bottomNavigationBar: bottomNav,
     );

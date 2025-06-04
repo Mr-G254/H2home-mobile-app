@@ -56,10 +56,10 @@ class Profile extends StatelessWidget{
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "EMAIL",
                           style: TextStyle(
                               fontFamily: "IBM Plex Mono",
@@ -69,8 +69,8 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          "vanessatrizzah@gmail.com",
-                          style: TextStyle(
+                          '${App.userProfile.username}@gmail.com',
+                          style: const TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,
                               color: Colors.black,
@@ -105,7 +105,7 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          App.userProfile.contact.toString(),
+                          App.userProfile.contact.toString() == "null" || App.userProfile.contact.toString().isEmpty ? "not included" : App.userProfile.contact.toString(),
                           style: const TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,
@@ -141,7 +141,7 @@ class Profile extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          App.userProfile.location,
+                          App.userProfile.location.toString() == "null" || App.userProfile.location.toString().isEmpty ? "not included" : App.userProfile.location.toString(),
                           style: const TextStyle(
                               fontFamily: "IBM Plex Mono",
                               fontSize: 17,

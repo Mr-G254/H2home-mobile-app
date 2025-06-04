@@ -14,15 +14,15 @@ class _PayNowState extends State<PayNow>{
   final TextEditingController priceController = TextEditingController();
   final TextEditingController phone = TextEditingController();
   
-  int selectedAmount = 0;
-  int totalPrice = 0;
-  int totalPriceNBottle = 0;
+  double selectedAmount = 0;
+  double totalPrice = 0;
+  double totalPriceNBottle = 0;
 
   bool isBottleSelected = false;
 
   void selectAmount(int price){
     setState(() {
-      selectedAmount = price;
+      selectedAmount = double.parse(price.toString());
     });
 
     updatePrice();
@@ -43,7 +43,7 @@ class _PayNowState extends State<PayNow>{
 
       if(txt.isNotEmpty){
         setState(() {
-          selectedAmount = int.parse(txt);
+          selectedAmount = double.parse(txt);
         });
       }else{
         setState(() {
@@ -92,9 +92,15 @@ class _PayNowState extends State<PayNow>{
                         elevation: 5,
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                        child: Image(
-                          image: AssetImage(widget.vendor.imageUrl),
-                          fit: BoxFit.cover,
+                        child: Container(
+                          alignment: Alignment.topCenter,
+                          child: FadeInImage.assetNetwork(
+                            width: double.infinity,
+                            height: double.infinity,
+                            placeholder: "Icons/userv.png",
+                            image: widget.vendor.imageUrl,
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),

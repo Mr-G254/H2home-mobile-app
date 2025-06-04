@@ -5,8 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:h2home/Components/Components.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
+import '../Backend/App.dart';
+
 class Dashboard extends StatefulWidget{
-  const Dashboard({super.key});
+  final String waterValue;
+  const Dashboard({super.key,required this.waterValue});
 
   State<Dashboard> createState() => _DashboardState();
 
@@ -38,15 +41,15 @@ class _DashboardState extends State<Dashboard>{
             alignment: Alignment.center,
             child: LiquidLinearProgressIndicator(
               backgroundColor: Colors.white,
-              value: 0.6,
+              value: double.parse(widget.waterValue)/100 ,
               valueColor: const AlwaysStoppedAnimation(Color(0xff1976D2)),
               borderColor: const Color(0xff64B5F6),
               borderWidth: 3,
               direction: Axis.vertical,
               borderRadius: 10,
-              center: const Text(
-                "60%",
-                style: TextStyle(
+              center: Text(
+                "${widget.waterValue}%",
+                style: const TextStyle(
                     fontFamily: "IBM Plex Mono",
                     fontSize: 17,
                     color: Colors.white
@@ -79,17 +82,17 @@ class _DashboardState extends State<Dashboard>{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text.rich(
+              Text.rich(
                 TextSpan(
                   text: "Hi, ",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'IBM Plex Mono',
                     fontSize: 20
                   ),
                   children: [
                     TextSpan(
-                      text: "Vanessuh!",
-                      style: TextStyle(
+                      text: App.username,
+                      style: const TextStyle(
                         fontFamily: "IBM Plex Mono",
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

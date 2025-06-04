@@ -1,3 +1,4 @@
+import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:h2home/Components/Components.dart';
 import 'package:h2home/Login/ForgotPassword.dart';
@@ -18,6 +19,26 @@ class Login extends StatefulWidget{
 class _LoginState extends State<Login>{
   final email = TextEditingController();
   final password = TextEditingController();
+  bool isLoading = false;
+
+  final loadingWidget = Container(
+    padding: const EdgeInsets.all(5),
+    child: const CircularProgressIndicator(
+      color: Colors.white,
+      strokeCap: StrokeCap.round,
+      strokeWidth: 5,
+    ),
+  );
+
+  final textWidget = const Text(
+    "Login",
+    style: TextStyle(
+      fontFamily: "IBM Plex Mono",
+      fontWeight: FontWeight.normal,
+      fontSize: 19,
+      color: Colors.white
+    ),
+  );
 
   @override
   Widget build(BuildContext context){
@@ -58,35 +79,44 @@ class _LoginState extends State<Login>{
                       "Password",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'IBM Plex Mono',
-                          color: Color(0xff1976D2)
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'IBM Plex Mono',
+                        color: Color(0xff1976D2)
                       ),
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.only(bottom: 10),
-                    child: PasswordField(
+                    child: FancyPasswordField(
                       controller: password,
-                      backgroundColor: Colors.white,
-                      hintText: "",
-                      errorMessage: "",
-                      color: const Color(0xff1976D2),
-                      passwordDecoration: PasswordDecoration(
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye_sharp,
+                      hasStrengthIndicator: false,
+                      hasValidationRules: false,
+                      keyboardType: TextInputType.visiblePassword,
+                      showPasswordWidget: Container(
+                        padding: EdgeInsets.all(2),
+                        child: const Image(
+                          image: AssetImage("Icons/hide.png"),
                           color: Color(0xff1976D2),
-                        ),
-                        inputStyle: const TextStyle(
-                          height: 1.4,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'IBM Plex Mono',
-                          color: Color(0xff64B5F6)
+                          height: 27,
+                          width: 27,
                         ),
                       ),
-                      border: PasswordBorder(
+                      hidePasswordWidget: const Image(
+                        image: AssetImage("Icons/show.png"),
+                        color: Color(0xff1976D2),
+                        height: 27,
+                        width: 25,
+                      ),
+                      style: const TextStyle(
+                        height: 1.4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'IBM Plex Mono',
+                        color: Color(0xff64B5F6)
+                      ),
+                      cursorColor: const Color(0xff64B5F6),
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide: const BorderSide(
@@ -116,17 +146,8 @@ class _LoginState extends State<Login>{
                             )
                         ),
                       ),
-                      // cursorColor: const Color(0xff64B5F6),
-                      // style: const TextStyle(
-                      //     height: 1.4,
-                      //     fontSize: 15,
-                      //     fontWeight: FontWeight.bold,
-                      //     fontFamily: 'IBM Plex Mono',
-                      //     color: Color(0xff64B5F6)
-                      // ),
-                      //
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -159,23 +180,22 @@ class _LoginState extends State<Login>{
                     backgroundColor: const Color(0xff1976D2)
                 ),
                 onPressed: () async{
+                  setState(() {
+                    isLoading = true;
+                  });
+
                   try{
                     await App.signIn(email.text, password.text);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
 
                   }catch(e){
+                    setState(() {
+                      isLoading = false;
+                    });
                     Error(e.toString());
                   }
                 },
-                child: const Text(
-                  "Login",
-                  style: TextStyle(
-                      fontFamily: "IBM Plex Mono",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 19,
-                      color: Colors.white
-                  ),
-                ),
+                child: isLoading ? loadingWidget : textWidget,
               ),
             ),
             Container(
